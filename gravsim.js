@@ -1,5 +1,4 @@
 const tableEle = document.createElement("table");
-document.body.appendChild(tableEle);
 for (var i=0;i<=490;i++) {
   let tableRow = document.createElement("tr");
   tableRow.className = `row${i}`;
@@ -10,3 +9,4 @@ for (var i=0;i<=490;i++) {
     tableRow.appendChild(tableEntry);
   }
 }
+document.body.appendChild(tableEle);

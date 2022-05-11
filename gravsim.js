@@ -1,2 +1,1 @@
-
-console.log("a");
+const table = document.getElementById("table");

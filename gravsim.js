@@ -1,5 +1,4 @@
 const tableEl = document.createElement("table");
-console.log(tableEl)
 for (var i=0;i<=490;i++) {
   let tableRow = document.createElement("tr");
   tableRow.className = `row${i}`;

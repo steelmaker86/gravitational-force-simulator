@@ -1,3 +1,4 @@
+/*
 const tableEl = document.createElement("table");
 for (var i=0;i<=490;i++) {
   let tableRow = document.createElement("tr");
@@ -10,3 +11,4 @@ for (var i=0;i<=490;i++) {
   }
 }
 document.body.appendChild(tableEl);
+*/

@@ -13,14 +13,19 @@
     }
   }
 </script>
-<script>
-  var sphereGeometry = new Three.SphereGeometry(20)
-</script>
+
 <script type="module">
 
   import * as THREE from 'three';
 
   const scene = new THREE.Scene();
+
+</script>
+<script type="module">
+
+  import { OrbitControls } from 'https://unpkg.com/three@<version>/examples/jsm/controls/OrbitControls.js';
+
+  const controls = new OrbitControls( camera, renderer.domElement );
 
 </script>
 

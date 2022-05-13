@@ -21,9 +21,12 @@ sphere3.position.x = -5;
 camera.position.z=10
 function animate() {
 	requestAnimationFrame( animate );
-  sphere.rotation.x += 0.01;
-				sphere.rotation.y += 0.01;
-
+  	sphere.rotation.x += 0.01;
+	sphere.rotation.y += 0.01;
+	sphere2.rotation.x += 0.01;
+	sphere2.rotation.y += 0.01;
+	sphere3.rotation.x += 0.01;
+	sphere3.rotation.y += 0.01;
 	renderer.render( scene, camera );
 }
 animate();

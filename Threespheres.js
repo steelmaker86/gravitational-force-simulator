@@ -14,19 +14,47 @@ scene.add( sphere2 );
 const geometry3 = new THREE.SphereGeometry( 1, 10, 10 );
 const material3 = new THREE.MeshBasicMaterial( { color: 0xffff00, wireframe:true } );
 const sphere3 = new THREE.Mesh( geometry, material );
+var angle = 0;
+var radius = 5; 
 scene.add( sphere3 );
 sphere.position.x = -1
 sphere2.position.x = 2
 sphere3.position.x = -5;
 camera.position.z=10
+var zoomstate = 0;
 function animate() {
 	requestAnimationFrame( animate );
-  	sphere.rotation.x += 0.01;
+  sphere.rotation.x += 0.01;
 	sphere.rotation.y += 0.01;
 	sphere2.rotation.x += 0.01;
 	sphere2.rotation.y += 0.01;
 	sphere3.rotation.x += 0.01;
 	sphere3.rotation.y += 0.01;
 	renderer.render( scene, camera );
+  switch (zoomstate) {
+  case -1: camera.position.z += 0.1;
+  break;
+  case 1: camera.position.z += -0.1;
+  break;
+  default: break;
+  }
 }
-animate();
+animate(); 
+
+window.addEventListener("keydown", keydownEvent);
+window.addEventListener("keyup", keyupEvent);
+function keydownEvent(event){
+	switch (event.key) {
+  	case "-": zoomstate = -1;
+    break;
+    case "=": zoomstate = 1;
+    break;
+    default: zoomstate = 0;
+    break;
+  }
+  console.log(zoomstate);
+}
+function keyupEvent() {
+	zoomstate = 0;
+  console.log(zoomstate);
+}

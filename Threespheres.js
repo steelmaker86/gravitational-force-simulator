@@ -42,6 +42,7 @@ function animate() {
   camera.position.x = radius * Math.cos( angle );  
   camera.position.z = radius * Math.sin( angle );
   angle += 0.01;
+  console.log("a");
   }
 }
 animate(); 

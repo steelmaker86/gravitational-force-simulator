@@ -26,23 +26,26 @@ var angle = 0;
 var radius = 10; 
 function animate() {
 	requestAnimationFrame( animate );
-  sphere.rotation.x += 0.01;
+/*  sphere.rotation.x += 0.01;
   sphere.rotation.y += 0.01;
   sphere2.rotation.x += 0.01;
   sphere2.rotation.y += 0.01;
 	sphere3.rotation.x += 0.01;
 	sphere3.rotation.y += 0.01;
+*/
 	renderer.render( scene, camera );
-  switch (zoomstate) {
-  case -1: camera.position.z += 0.1;
-  break;
-  case 1: camera.position.z += -0.1;
-  break;
-  default: break;
+  camera.rotation.y = (90*Math.PI/180)-angle;
+
   camera.position.x = radius * Math.cos( angle );  
   camera.position.z = radius * Math.sin( angle );
-  angle += 0.01;
-  console.log("a");
+  angle += 0.01; 
+ 
+  switch (zoomstate) {
+  case -1: radius += 0.1;
+  break;
+  case 1: radius += -0.1;
+  break;
+  default: break;
   }
 }
 animate(); 

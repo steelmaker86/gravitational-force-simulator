@@ -24,6 +24,7 @@ camera.position.z=10
 var zoomstate = 0;
 var angle = 0;
 var radius = 10; 
+var rotatestate = 0;
 function animate() {
 	requestAnimationFrame( animate );
 /*  sphere.rotation.x += 0.01;
@@ -35,17 +36,23 @@ function animate() {
 */
 	renderer.render( scene, camera );
   camera.rotation.y = (90*Math.PI/180)-angle;
-
+	
   camera.position.x = radius * Math.cos( angle );  
   camera.position.z = radius * Math.sin( angle );
-  angle += 0.01; 
  
   switch (zoomstate) {
   case -1: radius += 0.1;
   break;
   case 1: radius += -0.1;
   break;
-  default: break;
+  default:
+  }
+  switch (rotatestate) {
+  case 1: angle += 0.05;
+  break;
+  case -1: angle += -0.05;
+  break;
+  default:
   }
 }
 animate(); 
@@ -58,12 +65,26 @@ function keydownEvent(event){
       break;
       case "=": zoomstate = 1;
       break;
+      case "[": rotatestate = 1;
+      break;
+      case "]": rotatestate = -1;
+      break;
       default: zoomstate = 0;
+      rotatestate = 0;
       break;
   }
   console.log(zoomstate);
 }
-function keyupEvent() {
-  zoomstate = 0;
+function keyupEvent(event) {
+  switch (event.key) {
+  case "-":
+  case "=":zoomstate = 0;
+  break;
+  case "[":
+  case "]":
+  rotatestate = 0;
+  break;
+  default:break;
+  }
   console.log(zoomstate);
 }

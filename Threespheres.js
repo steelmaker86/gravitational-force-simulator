@@ -90,7 +90,7 @@ function keydownEvent(event) {
       rotatestate = -1;
       break;
     case ";":
-			rotatestate = 2;
+		  rotatestate = 2;
 		case "'":
 			rotatestate = -2;
     default:

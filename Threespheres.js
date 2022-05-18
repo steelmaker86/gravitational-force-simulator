@@ -28,15 +28,13 @@ const material3 = new THREE.MeshBasicMaterial({
   wireframe: true,
 });
 const sphere3 = new THREE.Mesh(geometry, material);
-var angle = 0;
-var radius = 5;
 scene.add(sphere3);
 sphere.position.x = -1;
 sphere2.position.x = 2;
 sphere3.position.x = -5;
 camera.position.z = 10;
 var zoomstate = 0;
-var angle = 0;
+var angleY = 0;
 var radius = 10;
 var rotatestate = 0;
 function animate() {
@@ -49,10 +47,10 @@ function animate() {
 	sphere3.rotation.y += 0.01;
 */
   renderer.render(scene, camera);
-  camera.rotation.y = (90 * Math.PI) / 180 - angle;
+  camera.rotation.y = (90 * Math.PI) / 180 - angleY;
 
-  camera.position.x = radius * Math.cos(angle);
-  camera.position.z = radius * Math.sin(angle);
+  camera.position.x = radius * Math.cos(angleY);
+  camera.position.z = radius * Math.sin(angleY);
 
   switch (zoomstate) {
     case -1:
@@ -65,10 +63,10 @@ function animate() {
   }
   switch (rotatestate) {
     case 1:
-      angle += 0.05;
+      angleY += 0.05;
       break;
     case -1:
-      angle += -0.05;
+      angleY += -0.05;
       break;
     default:
   }
@@ -91,6 +89,10 @@ function keydownEvent(event) {
     case "]":
       rotatestate = -1;
       break;
+    case ";":
+			rotatestate = 2;
+		case "'":
+			rotatestate = -2;
     default:
       zoomstate = 0;
       rotatestate = 0;

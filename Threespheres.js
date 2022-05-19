@@ -24,22 +24,25 @@ const material2 = new THREE.MeshBasicMaterial({
 });
 const sphere2 = new THREE.Mesh(geometry, material);
 scene.add(sphere2);
-const geometry3 = new THREE.SphereGeometry(1, 10, 10);
+/*const geometry3 = new THREE.SphereGeometry(1, 10, 10);
 const material3 = new THREE.MeshBasicMaterial({
   color: 0xffff00,
   wireframe: true,
 });
 const sphere3 = new THREE.Mesh(geometry, material);
-scene.add(sphere3);
+scene.add(sphere3); */
 sphere.position.x = -1;
 sphere2.position.x = 2;
-sphere3.position.x = -5;
+/*sphere3.position.x = -5; */
 camera.position.z = 10;
 var zoomstate = 0;
 var angleY = 0;
 var radius = 10;
 var rotatestate = 0;
 var yrotatestate = 0;
+var sphereVector1 = new THREE.Vector3( 0, 0, 0 );
+var sphereVector2 = new THREE.Vector3( 0, 0, 0 );
+var gForce = 0;
 function animate() {
   requestAnimationFrame(animate);
   /*  sphere.rotation.x += 0.01;
@@ -82,6 +85,15 @@ function animate() {
     break;
     default:
   }
+  sphereVector1.x = sphere.position.x
+  sphereVector1.y = sphere.position.y
+  sphereVector1.z = sphere.position.z
+  sphereVector2.x = sphere2.position.x
+  sphereVector2.y = sphere2.position.y
+  sphereVector2.z = sphere2.position.z
+  gForce = sphereVector1.distanceToSquared(sphereVector2)*(6.67430e-11);
+  
+  console.log(gForce);
   camera.lookAt(0,0,0);
 }
 animate();
@@ -114,7 +126,6 @@ function keydownEvent(event) {
       yrotatestate = 0;
       break;
   }
-  console.log(zoomstate);
 }
 function keyupEvent(event) {
   switch (event.key) {
@@ -133,5 +144,4 @@ function keyupEvent(event) {
     default:
       break;
   }
-  console.log(zoomstate);
 }

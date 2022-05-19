@@ -5,6 +5,8 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
+var axesHelper = new THREE.AxesHelper( 5 );
+scene.add( axesHelper );
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
@@ -37,6 +39,7 @@ var zoomstate = 0;
 var angleY = 0;
 var radius = 10;
 var rotatestate = 0;
+var yrotatestate = 0;
 function animate() {
   requestAnimationFrame(animate);
   /*  sphere.rotation.x += 0.01;
@@ -47,7 +50,8 @@ function animate() {
 	sphere3.rotation.y += 0.01;
 */
   renderer.render(scene, camera);
-  camera.rotation.y = (90 * Math.PI) / 180 - angleY;
+  /*camera.rotation.y = (90 * Math.PI) / 180 - angleY;*/
+
 
   camera.position.x = radius * Math.cos(angleY);
   camera.position.z = radius * Math.sin(angleY);
@@ -70,6 +74,15 @@ function animate() {
       break;
     default:
   }
+  switch (yrotatestate) {
+    case 1:
+    camera.position.y += 0.2;
+    break;
+    case -1: camera.position.y += -0.2;
+    break;
+    default:
+  }
+  camera.lookAt(0,0,0);
 }
 animate();
 
@@ -90,12 +103,15 @@ function keydownEvent(event) {
       rotatestate = -1;
       break;
     case ";":
-		  rotatestate = 2;
+		  yrotatestate = 1;
+      break;
 		case "'":
-			rotatestate = -2;
+			yrotatestate = -1;
+      break
     default:
       zoomstate = 0;
       rotatestate = 0;
+      yrotatestate = 0;
       break;
   }
   console.log(zoomstate);
@@ -108,10 +124,12 @@ function keyupEvent(event) {
       break;
     case "[":
     case "]":
+    rotatestate = 0;
+    break;
     case ";":
     case "'":
-      rotatestate = 0;
-      break;
+    yrotatestate = 0;
+    break;
     default:
       break;
   }

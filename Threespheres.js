@@ -99,16 +99,28 @@ function animate() {
   sphereVector3.z = sphere3.position.z
   sphereVector3.z = sphere3.position.x
   sphereVector3.z = sphere3.position.y
-  gForce = (1/sphereVector1.distanceToSquared(sphereVector2))*(6.67430e-11)*1000;
+  gForce = (1/sphereVector1.distanceToSquared(sphereVector2))*(6.67430e-11);
 // calculates the gravitational force/acceleration between the two spheres
-  Vel1 += gForce * 100;
+  Vel1 += gForce;
   sphere.position.x = (sphereVector1.x + Vel1 * (sphereVector2.x-sphereVector1.x))
   sphere.position.y = (sphereVector1.y + Vel1 * (sphereVector2.y-sphereVector1.y))
   sphere.position.z = (sphereVector1.z + Vel1 * (sphereVector2.z-sphereVector1.z))
   sphere2.position.x = (sphereVector2.x + Vel1 * (sphereVector1.x-sphereVector2.x))
   sphere2.position.y = (sphereVector2.y + Vel1 * (sphereVector1.y-sphereVector2.y))
   sphere2.position.z = (sphereVector2.z + Vel1 * (sphereVector1.z-sphereVector2.z))
-  console.log(sphere.position.x);
+  console.log(sphere.position.x); 
+  /*sphere.position.x = (sphereVector1.x + Vel1 * (sphereVector3.x-sphereVector1.x))
+  sphere.position.y = (sphereVector1.y + Vel1 * (sphereVector3.y-sphereVector1.y))
+  sphere.position.z = (sphereVector1.z + Vel1 * (sphereVector3.z-sphereVector1.z))
+  sphere2.position.x = (sphereVector2.x + Vel1 * (sphereVector3.x-sphereVector2.x))
+  sphere2.position.y = (sphereVector2.y + Vel1 * (sphereVector3.y-sphereVector2.y))
+  sphere2.position.z = (sphereVector2.z + Vel1 * (sphereVector3.z-sphereVector2.z))
+  sphere3.position.x = (sphereVector3.x + Vel1 * (sphereVector1.x-sphereVector3.x))
+  sphere3.position.y = (sphereVector3.y + Vel1 * (sphereVector1.y-sphereVector3.y))
+  sphere3.position.z = (sphereVector3.z + Vel1 * (sphereVector1.z-sphereVector3.z))
+  sphere3.position.x = (sphereVector3.x + Vel1 * (sphereVector2.x-sphereVector3.x))
+  sphere3.position.y = (sphereVector3.y + Vel1 * (sphereVector2.y-sphereVector3.y))
+  sphere3.position.z = (sphereVector3.z + Vel1 * (sphereVector2.z-sphereVector3.z)) */
   camera.lookAt(0,0,0);
 
 }
@@ -131,10 +143,10 @@ function keydownEvent(event) {
       rotatestate = -1;
       break;
     case ";":
-		  yrotatestate = 1;
+      yrotatestate = 1;
       break;
-		case "'":
-			yrotatestate = -1;
+    case "'":
+      yrotatestate = -1;
       break
     default:
       zoomstate = 0;
@@ -158,6 +170,6 @@ function keyupEvent(event) {
     yrotatestate = 0;
     break;
     default:
-      break;
+    break;
   }
 }

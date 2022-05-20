@@ -24,16 +24,16 @@ const material2 = new THREE.MeshBasicMaterial({
 });
 const sphere2 = new THREE.Mesh(geometry, material);
 scene.add(sphere2);
-/*const geometry3 = new THREE.SphereGeometry(1, 10, 10);
+const geometry3 = new THREE.SphereGeometry(1, 10, 10);
 const material3 = new THREE.MeshBasicMaterial({
   color: 0xffff00,
   wireframe: true,
 });
 const sphere3 = new THREE.Mesh(geometry, material);
-scene.add(sphere3); */
+scene.add(sphere3);
 sphere.position.x = -1;
 sphere2.position.x = 2;
-/*sphere3.position.x = -5; */
+sphere3.position.x = -5;
 camera.position.z = 10;
 var zoomstate = 0;
 var angleY = 0;
@@ -42,7 +42,9 @@ var rotatestate = 0;
 var yrotatestate = 0;
 var sphereVector1 = new THREE.Vector3( 0, 0, 0 );
 var sphereVector2 = new THREE.Vector3( 0, 0, 0 );
+var sphereVector3 = new THREE.Vector3( 0, 0, 0 );
 var gForce = 0;
+var Vel1 = 0;
 function animate() {
   requestAnimationFrame(animate);
   /*  sphere.rotation.x += 0.01;
@@ -68,6 +70,7 @@ function animate() {
       break;
     default:
   }
+// If = or - keys are being held, the radius of the circle the camera orbits in decreases
   switch (rotatestate) {
     case 1:
       angleY += 0.05;
@@ -77,6 +80,7 @@ function animate() {
       break;
     default:
   }
+// if [ or ] are held down, then rotate left or right
   switch (yrotatestate) {
     case 1:
     camera.position.y += 0.2;
@@ -85,16 +89,28 @@ function animate() {
     break;
     default:
   }
+// if ; or ' are held down, then change the y position of the camera
   sphereVector1.x = sphere.position.x
   sphereVector1.y = sphere.position.y
   sphereVector1.z = sphere.position.z
   sphereVector2.x = sphere2.position.x
   sphereVector2.y = sphere2.position.y
   sphereVector2.z = sphere2.position.z
-  gForce = sphereVector1.distanceToSquared(sphereVector2)*(6.67430e-11);
-  
-  console.log(gForce);
+  sphereVector3.z = sphere3.position.z
+  sphereVector3.z = sphere3.position.x
+  sphereVector3.z = sphere3.position.y
+  gForce = (1/sphereVector1.distanceToSquared(sphereVector2))*(6.67430e-11)*1000;
+// calculates the gravitational force/acceleration between the two spheres
+  Vel1 += gForce * 100;
+  sphere.position.x = (sphereVector1.x + Vel1 * (sphereVector2.x-sphereVector1.x))
+  sphere.position.y = (sphereVector1.y + Vel1 * (sphereVector2.y-sphereVector1.y))
+  sphere.position.z = (sphereVector1.z + Vel1 * (sphereVector2.z-sphereVector1.z))
+  sphere2.position.x = (sphereVector2.x + Vel1 * (sphereVector1.x-sphereVector2.x))
+  sphere2.position.y = (sphereVector2.y + Vel1 * (sphereVector1.y-sphereVector2.y))
+  sphere2.position.z = (sphereVector2.z + Vel1 * (sphereVector1.z-sphereVector2.z))
+  console.log(sphere.position.x);
   camera.lookAt(0,0,0);
+
 }
 animate();
 

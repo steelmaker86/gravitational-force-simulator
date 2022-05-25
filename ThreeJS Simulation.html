@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ThreeJS Gravity simulator</title>
+        <script src="https://threejs.org/build/three.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/three-orbitcontrols@2.110.3/OrbitControls.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <nav class="nav">
+    
+                    <ul class="nav-list nav-list-larger">
+                        <li class="nav-item nav-item-hidden">
+                            <a href="index.html" class="nav-link nav-link-apple"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="zoomOut" onclick="zoomer()">Zoom Out</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="zoomOut" onclick="zoomer2()">Zoom In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="xPlus" onclick="xoomer()">X Plus</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="xMinus" onclick="xoomer2()">X Minus</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="yPlus" onclick="yoomer()">Y Plus</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="yMinus" onclick="yoomer2()">Y Minus</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-link-search"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-link-bag"></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </body>
+    <script src="script.js"></script>
+    <script type="module" src="C:\Users\sghosh1\Documents\ThreeJS Simulation\OrbitControls.js_2.110.3\unpkg">
+        const controls = new OrbitControls( camera, renderer.domElement );
+        //Ok I give up on orbit controls
+    </script>
+</html>

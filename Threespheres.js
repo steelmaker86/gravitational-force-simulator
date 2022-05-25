@@ -25,10 +25,12 @@ const material2 = new THREE.MeshBasicMaterial({
 const sphere2 = new THREE.Mesh(geometry, material);
 scene.add(sphere2);
 sphere.position.x = -2;
+sphere.position.y = -2;
 sphere2.position.x = 2;
+sphere2.position.y = 2;
 camera.position.z = 10;
 var zoomstate = 0;
-var angleY = 0;
+var angleY = 90;
 var radius = 10;
 var rotatestate = 0;
 var yrotatestate = 0;
@@ -87,7 +89,7 @@ function animate() {
   sphereVector2.x = sphere2.position.x
   sphereVector2.y = sphere2.position.y
   sphereVector2.z = sphere2.position.z
-  gForce = (1/sphereVector1.distanceToSquared(sphereVector2))*(6.67430e-6);
+  gForce = (1/sphereVector1.distanceToSquared(sphereVector2))*(6.67430e-5);
   Vel1 += gForce;
   velList.push(Vel1);
   velList.shift(1);
